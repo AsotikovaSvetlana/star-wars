@@ -1,0 +1,16 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+/* Color */
+.primary-yellow {
+  color: var(--primary-yellow);
+}
+
+/* Type */
+.row {
+  flex-direction: row;
+  column-gap: 15px;
+}

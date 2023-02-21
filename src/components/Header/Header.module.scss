@@ -1,0 +1,27 @@
+.header {
+  padding: 10px 20px;
+  background-color: var(--primary-black);
+  box-shadow: var(--primary-shade);
+  z-index: 1;
+
+  &__content {
+    max-width: 1440px;
+    margin: auto;
+  }
+
+  &__logo {
+    width: 96px;
+    height: 96px;
+    margin: auto;
+    color: var(--primary-yellow);
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    a {
+      display: block;
+    }
+  }
+}

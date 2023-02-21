@@ -1,0 +1,26 @@
+.item {
+  a {
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+    transition: 0.2s ease;
+
+    &:hover {
+      color: var(--secondary-yellow);
+    }
+  }
+
+  span {
+    display: inline-block;
+  }
+
+  &__name {
+    font-size: 14px;
+  }
+}
+
+/* Icon size */
+.sm {
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,23 @@
+.footer {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: var(--secondary-black);
+  box-shadow: var(--secondary-shade);
+
+  &__content {
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    color: var(--primary-text);
+
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+  }
+}
