@@ -1,28 +1,24 @@
+import React from "react";
+import cn from "classnames";
 import s from "@/src/components/GridCollection/GridCollection.module.scss";
-import { ICollectionItem } from "@/src/types";
-import { CollectionCard } from "@/src/components/CollectionCard";
 
-interface GridCollectionProps {
-  collection: ICollectionItem[];
-  showDetails?: boolean;
+type PropsWithChildrenFunction<P, T> = P & {
+  children?: (item: T) => React.ReactNode;
+};
+
+interface GridCollectionProps<T> {
+  collection: T[];
+  variant: "categories" | "catalogue";
 }
 
-export const GridCollection = ({
+export const GridCollection = <T,>({
   collection,
-  showDetails,
-}: GridCollectionProps): JSX.Element => {
+  variant,
+  children,
+}: PropsWithChildrenFunction<GridCollectionProps<T>, T>): JSX.Element => {
   return (
-    <div className={s.grid}>
-      {collection.map(({ id, image, name, href }) => (
-        <CollectionCard
-          key={id}
-          id={id}
-          name={name}
-          image={image}
-          href={href}
-          showDetails={showDetails}
-        />
-      ))}
+    <div className={cn(s.grid, s[variant])}>
+      {children && collection.map((item) => children(item))}
     </div>
   );
 };

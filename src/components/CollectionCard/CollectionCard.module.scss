@@ -2,12 +2,13 @@
   width: 100%;
   height: 100%;
   position: relative;
-  border-radius: 5px;
+  border-radius: var(--br-small);
   transform-style: preserve-3d;
-  transition: transform 0.3s;
+  transition: 0.3s;
 
   &:hover {
     transform: scale(1.02);
+    opacity: 0.75;
   }
 
   &__link {
@@ -16,5 +17,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+}
+
+/* Variant */
+.catalogue {
+  img {
+    object-position: top center;
   }
 }
