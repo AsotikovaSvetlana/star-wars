@@ -1,8 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { format } from "date-fns";
 import { MainLayout } from "@/src/layouts/MainLayout";
 import { AppHead } from "@/src/components/AppHead";
 import { homePageCollection } from "../../src/data/home-page-collection";
 import {
+  Details,
   Entities,
   ICharacter,
   IFilm,
@@ -17,7 +19,7 @@ import { fetchCategoriesData } from "@/src/rest/fetchCategoriesData";
 
 interface MainCategoriesProps {
   page: keyof Entities;
-  characters:
+  collection:
     | ICharacter[]
     | IPlanet[]
     | IFilm[]
@@ -28,9 +30,41 @@ interface MainCategoriesProps {
 
 const MainCategories = ({
   page,
-  characters,
+  collection,
 }: MainCategoriesProps): JSX.Element => {
-  const title = `${page[0].toUpperCase()}${page.slice(1)}`;
+  const title = page && `${page[0].toUpperCase()}${page.slice(1)}`;
+
+  const getCardDetails = (item: Entities[keyof Entities]) => {
+    type EntitiesProps =
+      | Pick<ICharacter, "birth_year">
+      | Pick<IPlanet, "climate">
+      | Pick<IFilm, "release_date">
+      | Pick<ISpecies, "classification">
+      | Pick<IStarship, "starship_class">
+      | Pick<IVehicle, "vehicle_class">;
+
+    const details: Details = {};
+    const keys: (keyof Details)[] = [
+      "birth_year",
+      "release_date",
+      "climate",
+      "classification",
+      "starship_class",
+      "vehicle_class",
+    ];
+
+    keys.forEach((key) => {
+      if (key in item) {
+        const value =
+          key === "release_date"
+            ? format(new Date(item[key as keyof EntitiesProps]), "dd.MM.yyyy")
+            : item[key as keyof EntitiesProps];
+        details[key] = value;
+      }
+    });
+
+    return details;
+  };
 
   return (
     <MainLayout>
@@ -40,16 +74,17 @@ const MainCategories = ({
       />
       <GridCollection<Entities[typeof page]>
         variant="catalogue"
-        collection={characters}
+        collection={collection}
       >
         {(item) => (
           <CollectionCard
             key={item.id}
             variant="catalogue"
             showDetails
+            name={item.name}
             href={item.href}
             image={item.image}
-            name={item.name}
+            details={getCardDetails(item)}
           />
         )}
       </GridCollection>
@@ -89,7 +124,7 @@ export const getStaticProps: GetStaticProps<MainCategoriesProps> = async ({
   return {
     props: {
       page,
-      characters: result,
+      collection: result,
     },
   };
 };
