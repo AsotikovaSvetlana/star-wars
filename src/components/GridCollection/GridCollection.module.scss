@@ -8,8 +8,8 @@
 /* Variant */
 .catalogue {
   grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
-  grid-auto-rows: minmax(400px, 450px);
-  grid-gap: 30px;
+  grid-auto-rows: minmax(300px, 350px);
+  grid-gap: 20px 30px;
 
   @media (max-width: 1024px) {
     grid-template-columns: repeat(auto-fit, 220px);

@@ -66,7 +66,7 @@ export interface IPlanet {
   gravity: number;
   name: string;
   orbital_period: number;
-  population: number;
+  population: string;
   residents: string[];
   rotation_period: number;
   surface_water: number;

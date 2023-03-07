@@ -1,23 +1,11 @@
 .details {
   min-height: 100px;
-  padding: 30px 20px;
+  padding: 25px 20px;
   position: relative;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color: var(--secondary-black);
   color: var(--primary-text);
-
-  p {
-    font-size: 14px;
-    letter-spacing: 1.3px;
-  }
-
-  span {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: normal;
-    color: var(--primary-yellow);
-  }
 
   &::after {
     content: "";

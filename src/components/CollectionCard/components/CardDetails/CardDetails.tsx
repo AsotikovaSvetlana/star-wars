@@ -1,14 +1,22 @@
+import { Details } from "@/src/types";
 import s from "./CardDetails.module.scss";
+import { DetailsText } from "../DetailsText";
 
-export const CardDetails = () => {
+interface CardDetailsProps {
+  name: string;
+  details: Details;
+}
+
+export const CardDetails = ({
+  name,
+  details,
+}: CardDetailsProps): JSX.Element => {
   return (
     <div className={s.details}>
-      <p>
-        <span>Name:</span> {"Darth Waider"}
-      </p>
-      <p>
-        <span>Birth year:</span> {"1992"}
-      </p>
+      <DetailsText characteristic="Name" value={name} />
+      {Object.entries(details).map(([key, value]) => (
+        <DetailsText key={key} characteristic={key} value={value} />
+      ))}
     </div>
   );
 };
