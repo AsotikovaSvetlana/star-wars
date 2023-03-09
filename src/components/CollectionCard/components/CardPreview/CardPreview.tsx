@@ -1,6 +1,14 @@
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
+import dynamic from "next/dynamic";
 import cn from "classnames";
 import s from "./CardPreview.module.scss";
+
+const ImageComponent = dynamic(
+  import("../../../ImageComponent/ImageComponent").then(
+    (mod) => mod.ImageComponent
+  ),
+  { ssr: false }
+);
 
 interface CardPreviewProps {
   name: string;
@@ -17,11 +25,7 @@ export const CardPreview = ({
 }: CardPreviewProps): JSX.Element => (
   <div className={s.preview}>
     <div className={cn(s.preview__image, { [s.rounded]: !showDetails })}>
-      {typeof image === "string" ? (
-        <img src={image} alt={name} />
-      ) : (
-        <Image src={image} alt={name} />
-      )}
+      <ImageComponent image={image} alt={name} />
     </div>
     {showPreviewTitle && <div className={s.preview__title}>{name}</div>}
   </div>
