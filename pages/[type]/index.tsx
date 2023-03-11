@@ -6,6 +6,7 @@ import { AppHead } from "@/src/components/AppHead";
 import {
   Details,
   Entities,
+  EntitiesTypes,
   ICharacter,
   IFilm,
   IPlanet,
@@ -19,15 +20,9 @@ import { fetchCategoriesData } from "@/src/rest/fetchCategoriesData";
 import { Pagination } from "@/src/components/Pagination";
 
 interface MainCategoriesProps {
-  category: keyof Entities;
+  category: keyof EntitiesTypes;
   totalPages: number;
-  collection:
-    | ICharacter[]
-    | IPlanet[]
-    | IFilm[]
-    | ISpecies[]
-    | IStarship[]
-    | IVehicle[];
+  collection: Entities[];
 }
 
 const MainCategories = ({
@@ -35,7 +30,7 @@ const MainCategories = ({
   totalPages,
   collection,
 }: MainCategoriesProps): JSX.Element => {
-  const getCardDetails = (item: Entities[keyof Entities]) => {
+  const getCardDetails = (item: EntitiesTypes[keyof EntitiesTypes]) => {
     type EntitiesProps =
       | Pick<ICharacter, "birth_year">
       | Pick<IPlanet, "climate">
@@ -77,7 +72,7 @@ const MainCategories = ({
         title={`${getPageTitle} – Star Wars`}
         description={`Everything you need to know about ${category} in the Star Wars universe.`}
       />
-      <GridCollection<Entities[typeof category]>
+      <GridCollection<EntitiesTypes[typeof category]>
         variant="catalogue"
         collection={collection}
       >
@@ -113,10 +108,13 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   const category = Array.isArray(params.type)
-    ? (params.type[0] as keyof Entities)
-    : (params.type as keyof Entities);
+    ? (params.type[0] as keyof EntitiesTypes)
+    : (params.type as keyof EntitiesTypes);
   const currentPage = Array.isArray(query.page) ? query.page[0] : query.page;
-  const result = await fetchCategoriesData(category, currentPage);
+  const result = await fetchCategoriesData<EntitiesTypes[typeof category]>(
+    category,
+    currentPage
+  );
 
   if (!result) {
     return {
@@ -127,7 +125,7 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: {
       category,
-      totalPages: result.pages,
+      totalPages: result.totalPages,
       collection: result.collection,
     },
   };

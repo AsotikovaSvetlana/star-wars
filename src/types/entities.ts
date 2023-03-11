@@ -1,6 +1,14 @@
 import { StaticImageData } from "next/image";
 
-export type Entities = {
+export type Entities =
+  | ICharacter
+  | IFilm
+  | IPlanet
+  | ISpecies
+  | IStarship
+  | IVehicle;
+
+export type EntitiesTypes = {
   people: ICharacter;
   films: IFilm;
   planets: IPlanet;
