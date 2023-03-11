@@ -1,8 +1,8 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
+import { useMemo } from "react";
 import { format } from "date-fns";
 import { MainLayout } from "@/src/layouts/MainLayout";
 import { AppHead } from "@/src/components/AppHead";
-import { homePageCollection } from "../../src/data/home-page-collection";
 import {
   Details,
   Entities,
@@ -16,9 +16,11 @@ import {
 import { GridCollection } from "@/src/components/GridCollection";
 import { CollectionCard } from "@/src/components/CollectionCard";
 import { fetchCategoriesData } from "@/src/rest/fetchCategoriesData";
+import { Pagination } from "@/src/components/Pagination";
 
 interface MainCategoriesProps {
-  page: keyof Entities;
+  category: keyof Entities;
+  totalPages: number;
   collection:
     | ICharacter[]
     | IPlanet[]
@@ -29,11 +31,10 @@ interface MainCategoriesProps {
 }
 
 const MainCategories = ({
-  page,
+  category,
+  totalPages,
   collection,
 }: MainCategoriesProps): JSX.Element => {
-  const title = page && `${page[0].toUpperCase()}${page.slice(1)}`;
-
   const getCardDetails = (item: Entities[keyof Entities]) => {
     type EntitiesProps =
       | Pick<ICharacter, "birth_year">
@@ -66,13 +67,17 @@ const MainCategories = ({
     return details;
   };
 
+  const getPageTitle = useMemo(() => {
+    return category && `${category[0].toUpperCase()}${category.slice(1)}`;
+  }, [category]);
+
   return (
     <MainLayout>
       <AppHead
-        title={`${title} – Star Wars`}
-        description={`Everything you need to know about ${page} in the Star Wars universe.`}
+        title={`${getPageTitle} – Star Wars`}
+        description={`Everything you need to know about ${category} in the Star Wars universe.`}
       />
-      <GridCollection<Entities[typeof page]>
+      <GridCollection<Entities[typeof category]>
         variant="catalogue"
         collection={collection}
       >
@@ -88,32 +93,30 @@ const MainCategories = ({
           />
         )}
       </GridCollection>
+      <Pagination
+        total={totalPages}
+        category={category}
+        margin="mt-30"
+        buttons={{ color: "primary-black", size: "sm" }}
+      />
     </MainLayout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: string[] = homePageCollection.map((item) => item.href);
-
-  return {
-    paths,
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps<MainCategoriesProps> = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps<
+  MainCategoriesProps
+> = async ({ params, query }) => {
   if (!params || !params.type) {
     return {
       notFound: true,
     };
   }
 
-  const page = Array.isArray(params.type)
+  const category = Array.isArray(params.type)
     ? (params.type[0] as keyof Entities)
     : (params.type as keyof Entities);
-  const result = await fetchCategoriesData(page);
+  const currentPage = Array.isArray(query.page) ? query.page[0] : query.page;
+  const result = await fetchCategoriesData(category, currentPage);
 
   if (!result) {
     return {
@@ -123,8 +126,9 @@ export const getStaticProps: GetStaticProps<MainCategoriesProps> = async ({
 
   return {
     props: {
-      page,
-      collection: result,
+      category,
+      totalPages: result.pages,
+      collection: result.collection,
     },
   };
 };

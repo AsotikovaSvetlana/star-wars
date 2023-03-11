@@ -4,7 +4,7 @@ import { DetailsText } from "../DetailsText";
 
 interface CardDetailsProps {
   name: string;
-  details: Details;
+  details?: Details;
 }
 
 export const CardDetails = ({
@@ -14,9 +14,10 @@ export const CardDetails = ({
   return (
     <div className={s.details}>
       <DetailsText characteristic="Name" value={name} />
-      {Object.entries(details).map(([key, value]) => (
-        <DetailsText key={key} characteristic={key} value={value} />
-      ))}
+      {details &&
+        Object.entries(details).map(([key, value]) => (
+          <DetailsText key={key} characteristic={key} value={value} />
+        ))}
     </div>
   );
 };

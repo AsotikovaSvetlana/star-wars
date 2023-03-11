@@ -13,7 +13,7 @@ interface CollectionCardProps {
   variant: "categories" | "catalogue";
   showDetails?: boolean;
   showPreviewTitle?: boolean;
-  details: Details;
+  details?: Details;
 }
 
 export const CollectionCard = ({

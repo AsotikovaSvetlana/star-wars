@@ -3,10 +3,13 @@ import { IEntitiesResponse } from "../types";
 
 export const StarWarsAPI = {
   baseUrl: "https://swapi.dev/api",
-  async getEntitiesData<T>(slug: string): Promise<T[]> {
+  async getEntitiesData<T>(
+    slug: string,
+    pageNumber?: string
+  ): Promise<IEntitiesResponse<T>> {
     const { data } = await axios.get<IEntitiesResponse<T>>(
-      `${this.baseUrl}/${slug}`
+      `${this.baseUrl}/${slug}${pageNumber ? `/?page=${pageNumber}` : ""}`
     );
-    return data.results;
+    return data;
   },
 };
