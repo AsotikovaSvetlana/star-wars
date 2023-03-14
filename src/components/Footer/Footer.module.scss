@@ -13,6 +13,10 @@
     column-gap: 15px;
     color: var(--primary-text);
 
+    @media (max-width: 400px) {
+      flex-direction: column;
+    }
+
     p {
       font-size: 12px;
       font-weight: 600;
