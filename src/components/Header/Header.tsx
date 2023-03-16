@@ -3,7 +3,7 @@ import s from "./Header.module.scss";
 import Logo from "@/src/assets/icons/logo.svg";
 import Link from "next/link";
 
-export const Header = () => {
+export const Header = React.memo(() => {
   return (
     <header className={s.header}>
       <div className={s.header__content}>
@@ -15,4 +15,4 @@ export const Header = () => {
       </div>
     </header>
   );
-};
+});

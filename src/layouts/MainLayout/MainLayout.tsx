@@ -7,7 +7,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-export const MainLayout = ({ children }: MainLayoutProps): JSX.Element => {
+const MainLayout = React.memo(({ children }: MainLayoutProps): JSX.Element => {
   return (
     <div className={s.wrapper}>
       <Header />
@@ -15,4 +15,6 @@ export const MainLayout = ({ children }: MainLayoutProps): JSX.Element => {
       <Footer />
     </div>
   );
-};
+});
+
+export { MainLayout };

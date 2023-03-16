@@ -1,8 +1,14 @@
 .icon {
   width: 150px;
-  height: fit-content;
-  animation: rotate 0.7s linear;
-  animation-iteration-count: 2;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    animation: rotate 0.7s linear;
+    animation-iteration-count: 2;
+  }
 }
 
 .flex {

@@ -3,7 +3,7 @@ import s from "./Footer.module.scss";
 import { contacts } from "./data/contacts";
 import { Menu } from "../Menu";
 
-export const Footer = () => {
+export const Footer = React.memo(() => {
   return (
     <footer className={s.footer}>
       <div className={s.footer__content}>
@@ -12,4 +12,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+});
