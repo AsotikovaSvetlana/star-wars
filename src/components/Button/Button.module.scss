@@ -30,6 +30,16 @@
   line-height: 16px;
 }
 
+.md {
+  padding: 18px;
+  min-width: 200px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
 /* Color */
 .primary-black {
   background-color: var(--primary-black);
@@ -44,5 +54,17 @@
     opacity: 0.6;
     box-shadow: 0px 0px 5px var(--secondary-yellow);
     pointer-events: none;
+  }
+}
+
+.primary-yellow {
+  background-color: var(--primary-yellow);
+  color: var(--primary-black);
+  border: 1px solid var(--primary-yellow);
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid var(--primary-yellow);
+    color: var(--primary-text);
   }
 }

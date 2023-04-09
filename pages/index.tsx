@@ -1,11 +1,15 @@
+import { useContext } from "react";
 import { GridCollection } from "@/src/components/GridCollection";
 import { MainLayout } from "@/src/layouts/MainLayout";
 import { homePageCollection } from "@/src/data/home-page-collection";
 import { AppHead } from "@/src/components/AppHead";
 import { ICollectionItem } from "@/src/types";
 import { CollectionCard } from "@/src/components/CollectionCard";
+import { AppContext } from "@/src/context";
 
 const Home = () => {
+  const { setPoster } = useContext(AppContext);
+
   return (
     <MainLayout>
       <AppHead
@@ -21,6 +25,7 @@ const Home = () => {
             key={item.id}
             variant="catalogue"
             showPreviewTitle
+            onClick={setPoster}
             {...item}
           />
         )}

@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import { format } from "date-fns";
 import { MainLayout } from "@/src/layouts/MainLayout";
 import { AppHead } from "@/src/components/AppHead";
@@ -19,17 +19,17 @@ import { CollectionCard } from "@/src/components/CollectionCard";
 import { fetchCategoriesData } from "@/src/rest/fetchCategoriesData";
 import { Pagination } from "@/src/components/Pagination";
 
-interface MainCategoriesProps {
+interface CollectionPageProps {
   category: keyof EntitiesTypes;
   totalPages: number;
   collection: Entities[];
 }
 
-const MainCategories = ({
+const CollectionPage = ({
   category,
   totalPages,
   collection,
-}: MainCategoriesProps): JSX.Element => {
+}: CollectionPageProps): JSX.Element => {
   const getCardDetails = (item: EntitiesTypes[keyof EntitiesTypes]) => {
     type EntitiesProps =
       | Pick<ICharacter, "birth_year">
@@ -99,7 +99,7 @@ const MainCategories = ({
 };
 
 export const getServerSideProps: GetServerSideProps<
-  MainCategoriesProps
+  CollectionPageProps
 > = async ({ params, query }) => {
   if (!params || !params.type) {
     return {
@@ -131,4 +131,4 @@ export const getServerSideProps: GetServerSideProps<
   };
 };
 
-export default MainCategories;
+export default CollectionPage;

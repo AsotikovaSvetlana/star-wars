@@ -14,6 +14,7 @@ interface CollectionCardProps {
   showDetails?: boolean;
   showPreviewTitle?: boolean;
   details?: Details;
+  onClick?: (image: string | StaticImageData) => void;
 }
 
 export const CollectionCard = ({
@@ -24,10 +25,15 @@ export const CollectionCard = ({
   showDetails,
   showPreviewTitle,
   details,
+  onClick,
 }: CollectionCardProps): JSX.Element => {
   return (
     <div className={cn(s.card, s[variant])}>
-      <Link href={href} className={s.card__link}>
+      <Link
+        href={href}
+        className={s.card__link}
+        onClick={() => onClick && onClick(image)}
+      >
         <CardPreview
           name={name}
           image={image}

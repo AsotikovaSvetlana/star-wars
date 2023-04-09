@@ -1,0 +1,123 @@
+.card {
+}
+
+.banner {
+  width: 100%;
+  height: 60vh;
+  max-height: 600px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--primary-black);
+    opacity: 0.3;
+    z-index: 1;
+    filter: blur(13px);
+  }
+
+  &__cover {
+    object-fit: cover;
+    object-position: center top;
+    filter: blur(13px);
+  }
+
+  &__info {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;
+  }
+
+  &__image {
+    max-width: 315px;
+    width: 315px;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    img {
+      object-fit: cover;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__text {
+    h1 {
+      max-width: 430px;
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 42px;
+      color: var(--primary-text);
+    }
+
+    p {
+      margin: 5px 0 40px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--primary-yellow);
+    }
+  }
+}
+
+.text {
+  padding: 200px 30px;
+}
+
+.container {
+  margin: 50px auto;
+  max-width: 1000px;
+  border-radius: 16px;
+
+  &__content {
+    height: 100%;
+    padding: 35px 30px;
+    border-radius: 16px;
+    background-color: var(--primary-black);
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary-yellow);
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      li {
+        width: 45%;
+        margin-bottom: 15px;
+        display: flex;
+        column-gap: 15px;
+
+        span {
+          &:nth-child(1) {
+            width: 150px;
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+  }
+}

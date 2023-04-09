@@ -8,6 +8,8 @@ export type Entities =
   | IStarship
   | IVehicle;
 
+export type Pages = keyof EntitiesTypes;
+
 export type EntitiesTypes = {
   people: ICharacter;
   films: IFilm;
@@ -23,6 +25,8 @@ export type IEntitiesResponse<T> = {
   previous: null;
   results: T[];
 };
+
+export type IEntityDetailsResponse<T> = T;
 
 export interface ICharacter {
   name: string;

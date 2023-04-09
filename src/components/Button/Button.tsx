@@ -5,8 +5,8 @@ import s from "./Button.module.scss";
 
 interface ButtonProps {
   text: string | number;
-  color: "primary-black";
-  size: "sm";
+  color: "primary-black" | "primary-yellow";
+  size: "sm" | "md";
   onClick: () => void;
   href?: string;
   active?: boolean;
