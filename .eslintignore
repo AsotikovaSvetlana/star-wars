@@ -1,0 +1,6 @@
+build/*
+public/*
+docs/*
+templates/*
+.next
+node_modules
