@@ -1,45 +1,45 @@
-import Characters from "../assets/images/home/characters.jpg";
-import Films from "../assets/images/home/films.jpg";
-import Planets from "../assets/images/home/planets.png";
-import Species from "../assets/images/home/species.jpg";
-import Starships from "../assets/images/home/starships.jpg";
-import Vehicles from "../assets/images/home/vehicles.jpg";
+import Characters from '../assets/images/home/characters.jpg';
+import Films from '../assets/images/home/films.jpg';
+import Planets from '../assets/images/home/planets.png';
+import Species from '../assets/images/home/species.jpg';
+import Starships from '../assets/images/home/starships.jpg';
+import Vehicles from '../assets/images/home/vehicles.jpg';
 
 export const homePageCollection = [
   {
     id: 1,
-    name: "Characters",
+    name: 'Characters',
     image: Characters,
-    href: "/people",
+    href: '/people',
   },
   {
     id: 2,
-    name: "Films",
+    name: 'Films',
     image: Films,
-    href: "/films",
+    href: '/films',
   },
   {
     id: 3,
-    name: "Planets",
+    name: 'Planets',
     image: Planets,
-    href: "/planets",
+    href: '/planets',
   },
   {
     id: 4,
-    name: "Species",
+    name: 'Species',
     image: Species,
-    href: "/species",
+    href: '/species',
   },
   {
     id: 5,
-    name: "Starships",
+    name: 'Starships',
     image: Starships,
-    href: "/starships",
+    href: '/starships',
   },
   {
     id: 6,
-    name: "Vehicles",
+    name: 'Vehicles',
     image: Vehicles,
-    href: "/vehicles",
+    href: '/vehicles',
   },
 ];

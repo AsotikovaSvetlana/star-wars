@@ -1,7 +1,7 @@
-import React, { Provider } from "react";
-import type { AppProps } from "next/app";
-import "@/styles/globals.scss";
-import { AppContext, initialState } from "@/src/context";
+import React from 'react';
+import type { AppProps } from 'next/app';
+import '@/styles/globals.scss';
+import { AppContext, initialState } from '@/src/context';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

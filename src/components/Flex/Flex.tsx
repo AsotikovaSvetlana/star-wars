@@ -1,11 +1,11 @@
-import cn from "classnames";
-import { CSSProperties } from "react";
-import s from "./Flex.module.scss";
+import cn from 'classnames';
+import { CSSProperties } from 'react';
+import s from './Flex.module.scss';
 
 interface FlexProps {
-  direction: "column" | "row";
-  align: "ai-center";
-  justify: "jc-center";
+  direction: 'column' | 'row';
+  align: 'ai-center';
+  justify: 'jc-center';
   children: React.ReactNode;
   classNames?: CSSProperties;
 }

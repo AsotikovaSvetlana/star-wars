@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
-import { StaticImageData } from "next/image";
-import DefaultPoster from "@/src/assets/images/home/default.jpeg";
+import { createContext } from 'react';
+import { StaticImageData } from 'next/image';
+import DefaultPoster from '@/src/assets/images/home/default.jpeg';
 
 type ContextType = {
   poster: string | StaticImageData;

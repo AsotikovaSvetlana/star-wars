@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
-import Image, { StaticImageData } from "next/image";
-import s from "./ImageComponent.module.scss";
-import DefaultImage from "@/src/assets/icons/default.svg";
+import React, { useMemo, useState } from 'react';
+import Image, { StaticImageData } from 'next/image';
+import s from './ImageComponent.module.scss';
+import DefaultImage from '@/src/assets/icons/default.svg';
 
 interface ImageComponentProps {
   image: StaticImageData | string;
@@ -27,12 +27,12 @@ export const ImageComponent = ({
       );
     }
 
-    if (typeof image === "string") {
+    if (typeof image === 'string') {
       return <img src={image} alt={alt} onError={setDefaultImage} />;
     } else {
       return <Image src={image} alt={alt} onError={setDefaultImage} />;
     }
-  }, [image, error]);
+  }, [image, alt, error]);
 
   return <>{getImageChildren}</>;
 };

@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { StaticImageData } from "next/image";
-import cn from "classnames";
-import s from "./CollectionCard.module.scss";
-import { CardDetails } from "@/src/components/CollectionCard/components/CardDetails";
-import { CardPreview } from "@/src/components/CollectionCard/components/CardPreview";
-import { Details } from "@/src/types";
+import Link from 'next/link';
+import { StaticImageData } from 'next/image';
+import cn from 'classnames';
+import s from './CollectionCard.module.scss';
+import { CardDetails } from '@/src/components/CollectionCard/components/CardDetails';
+import { CardPreview } from '@/src/components/CollectionCard/components/CardPreview';
+import { Details } from '@/src/types';
 
 interface CollectionCardProps {
   name: string;
   href: string;
   image: string | StaticImageData;
-  variant: "categories" | "catalogue";
+  variant: 'categories' | 'catalogue';
   showDetails?: boolean;
   showPreviewTitle?: boolean;
   details?: Details;

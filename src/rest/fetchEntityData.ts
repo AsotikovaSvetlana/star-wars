@@ -1,8 +1,8 @@
-import { StarWarsAPI } from "@/src/api/StarWarsAPI";
+import { StarWarsAPI } from '@/src/api/StarWarsAPI';
 
 export const fetchEntityData = async <T extends object>(
   id: number,
-  type: string
+  type: string,
 ) => {
   try {
     const response = await StarWarsAPI.getEntityDetails<T>(id, type);

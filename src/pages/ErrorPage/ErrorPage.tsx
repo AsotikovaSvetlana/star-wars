@@ -1,8 +1,8 @@
-import Link from "next/link";
-import s from "./ErrorPage.module.scss";
-import Yoda from "@/src/assets/images/error/yoda.svg";
-import { MainLayout } from "@/src/layouts/MainLayout";
-import { Flex } from "@/src/components/Flex";
+import Link from 'next/link';
+import s from './ErrorPage.module.scss';
+import Yoda from '@/src/assets/images/error/yoda.svg';
+import { MainLayout } from '@/src/layouts/MainLayout';
+import { Flex } from '@/src/components/Flex';
 
 const ErrorPage = () => {
   return (
@@ -19,7 +19,7 @@ const ErrorPage = () => {
         <div className={s.text}>
           <p>Page not found</p>
           <p>
-            Click to try <Link href="/">again</Link> and{" "}
+            Click to try <Link href="/">again</Link> and{' '}
             <span>May the Force be with you</span>!
           </p>
         </div>

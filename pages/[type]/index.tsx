@@ -1,8 +1,8 @@
-import { GetServerSideProps } from "next";
-import { useMemo, useContext } from "react";
-import { format } from "date-fns";
-import { MainLayout } from "@/src/layouts/MainLayout";
-import { AppHead } from "@/src/components/AppHead";
+import { GetServerSideProps } from 'next';
+import { useMemo } from 'react';
+import { format } from 'date-fns';
+import { MainLayout } from '@/src/layouts/MainLayout';
+import { AppHead } from '@/src/components/AppHead';
 import {
   Details,
   Entities,
@@ -13,11 +13,11 @@ import {
   ISpecies,
   IStarship,
   IVehicle,
-} from "@/src/types";
-import { GridCollection } from "@/src/components/GridCollection";
-import { CollectionCard } from "@/src/components/CollectionCard";
-import { fetchCategoriesData } from "@/src/rest/fetchCategoriesData";
-import { Pagination } from "@/src/components/Pagination";
+} from '@/src/types';
+import { GridCollection } from '@/src/components/GridCollection';
+import { CollectionCard } from '@/src/components/CollectionCard';
+import { fetchCategoriesData } from '@/src/rest/fetchCategoriesData';
+import { Pagination } from '@/src/components/Pagination';
 
 interface CollectionPageProps {
   category: keyof EntitiesTypes;
@@ -32,28 +32,28 @@ const CollectionPage = ({
 }: CollectionPageProps): JSX.Element => {
   const getCardDetails = (item: EntitiesTypes[keyof EntitiesTypes]) => {
     type EntitiesProps =
-      | Pick<ICharacter, "birth_year">
-      | Pick<IPlanet, "climate">
-      | Pick<IFilm, "release_date">
-      | Pick<ISpecies, "classification">
-      | Pick<IStarship, "starship_class">
-      | Pick<IVehicle, "vehicle_class">;
+      | Pick<ICharacter, 'birth_year'>
+      | Pick<IPlanet, 'climate'>
+      | Pick<IFilm, 'release_date'>
+      | Pick<ISpecies, 'classification'>
+      | Pick<IStarship, 'starship_class'>
+      | Pick<IVehicle, 'vehicle_class'>;
 
     const details: Details = {};
     const keys: (keyof Details)[] = [
-      "birth_year",
-      "release_date",
-      "climate",
-      "classification",
-      "starship_class",
-      "vehicle_class",
+      'birth_year',
+      'release_date',
+      'climate',
+      'classification',
+      'starship_class',
+      'vehicle_class',
     ];
 
     keys.forEach((key) => {
       if (key in item) {
         const value =
-          key === "release_date"
-            ? format(new Date(item[key as keyof EntitiesProps]), "dd.MM.yyyy")
+          key === 'release_date'
+            ? format(new Date(item[key as keyof EntitiesProps]), 'dd.MM.yyyy')
             : item[key as keyof EntitiesProps];
         details[key] = value;
       }
@@ -92,7 +92,7 @@ const CollectionPage = ({
         total={totalPages}
         category={category}
         margin="mt-30"
-        buttons={{ color: "primary-black", size: "sm" }}
+        buttons={{ color: 'primary-black', size: 'sm' }}
       />
     </MainLayout>
   );
@@ -113,7 +113,7 @@ export const getServerSideProps: GetServerSideProps<
   const currentPage = Array.isArray(query.page) ? query.page[0] : query.page;
   const result = await fetchCategoriesData<EntitiesTypes[typeof category]>(
     category,
-    currentPage
+    currentPage,
   );
 
   if (!result) {

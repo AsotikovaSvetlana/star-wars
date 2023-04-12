@@ -1,14 +1,14 @@
-import { GetServerSideProps } from "next";
-import s from "@/src/pages/CollectionCardPage/CollectionCardPage.module.scss";
-import { MainLayout } from "@/src/layouts/MainLayout";
-import { useContext, useRef } from "react";
-import { AppContext } from "@/src/context";
-import { fetchEntityData } from "@/src/rest/fetchEntityData";
-import { Button } from "@/src/components/Button";
-import DefaultPoster from "@/src/assets/images/home/default.jpeg";
-import Image from "next/image";
-import { ImageComponent } from "@/src/components/ImageComponent";
-import { Entities, EntitiesTypes, Pages } from "@/src/types";
+import { GetServerSideProps } from 'next';
+import s from '@/src/pages/CollectionCardPage/CollectionCardPage.module.scss';
+import { MainLayout } from '@/src/layouts/MainLayout';
+import { useContext, useRef } from 'react';
+import { AppContext } from '@/src/context';
+import { fetchEntityData } from '@/src/rest/fetchEntityData';
+import { Button } from '@/src/components/Button';
+import DefaultPoster from '@/src/assets/images/home/default.jpeg';
+import Image from 'next/image';
+import { ImageComponent } from '@/src/components/ImageComponent';
+import { Entities, EntitiesTypes, Pages } from '@/src/types';
 
 interface CardPageProps {
   data: Entities;
@@ -18,13 +18,13 @@ interface CardPageProps {
 
 const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
   const { poster } = useContext(AppContext);
-  const src = typeof poster === "string" ? poster : poster.src;
-  const title = "title" in data ? data.title : data.name;
+  const src = typeof poster === 'string' ? poster : poster.src;
+  const title = 'title' in data ? data.title : data.name;
   const infoRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     infoRef.current &&
-      infoRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -49,7 +49,7 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
           <div className={s.banner__image}>
             <ImageComponent
               image={`https://starwars-visualguide.com/assets/img/${
-                category === "people" ? "characters" : category
+                category === 'people' ? 'characters' : category
               }/${id}.jpg`}
               alt={title}
             />
@@ -73,7 +73,7 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
               <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
             </li>
             <li>
-              <span>Powers:</span>{" "}
+              <span>Powers:</span>{' '}
               <span>
                 super strength, flight, invulnerability, superhuman agility,
                 super speed, living lightning
@@ -102,15 +102,14 @@ export const getServerSideProps: GetServerSideProps<CardPageProps> = async ({
   }
 
   const id =
-    typeof params.entity === "string" ? +params.entity : +params.entity[0];
+    typeof params.entity === 'string' ? +params.entity : +params.entity[0];
   const category = (
-    typeof params.type === "string" ? params.type : params.type[0]
+    typeof params.type === 'string' ? params.type : params.type[0]
   ) as Pages;
-  console.log(category);
 
   const data = await fetchEntityData<EntitiesTypes[typeof category]>(
     id,
-    category
+    category,
   );
 
   if (!data) {

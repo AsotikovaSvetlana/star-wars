@@ -1,13 +1,13 @@
-import { StaticImageData } from "next/image";
-import dynamic from "next/dynamic";
-import cn from "classnames";
-import s from "./CardPreview.module.scss";
+import { StaticImageData } from 'next/image';
+import dynamic from 'next/dynamic';
+import cn from 'classnames';
+import s from './CardPreview.module.scss';
 
 const ImageComponent = dynamic(
-  import("../../../ImageComponent/ImageComponent").then(
-    (mod) => mod.ImageComponent
+  import('../../../ImageComponent/ImageComponent').then(
+    (mod) => mod.ImageComponent,
   ),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface CardPreviewProps {

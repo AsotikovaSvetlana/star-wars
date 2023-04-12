@@ -1,11 +1,11 @@
-import { PaginationItem } from "@/src/types";
+import { PaginationItem } from '@/src/types';
 
 export const initPaginationData = (
   total: number,
-  category: string
+  category: string,
 ): PaginationItem[] => {
   const paginationData: PaginationItem[] = new Array(total)
-    .fill({ id: 0, count: 0, href: "" })
+    .fill({ id: 0, count: 0, href: '' })
     .map((item, i) => {
       return {
         ...item,

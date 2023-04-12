@@ -1,1 +1,1 @@
-export * from "./GridCollection";
+export * from './GridCollection';

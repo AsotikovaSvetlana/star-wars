@@ -1,14 +1,14 @@
-import React from "react";
-import cn from "classnames";
-import { IMenuItem } from "@/src/types";
-import { MenuItem } from "./components/MenuItem";
-import s from "./Menu.module.scss";
+import React from 'react';
+import cn from 'classnames';
+import { IMenuItem } from '@/src/types';
+import { MenuItem } from './components/MenuItem';
+import s from './Menu.module.scss';
 
 interface MenuProps {
   menu: IMenuItem[];
-  color: "primary-yellow";
-  iconSize: "sm";
-  type: "row" | "column";
+  color: 'primary-yellow';
+  iconSize: 'sm';
+  type: 'row' | 'column';
 }
 
 export const Menu = ({

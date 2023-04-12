@@ -1,6 +1,6 @@
-import React from "react";
-import cn from "classnames";
-import s from "@/src/components/GridCollection/GridCollection.module.scss";
+import React from 'react';
+import cn from 'classnames';
+import s from '@/src/components/GridCollection/GridCollection.module.scss';
 
 type PropsWithChildrenFunction<P, T> = P & {
   children?: (item: T) => React.ReactNode;
@@ -8,7 +8,7 @@ type PropsWithChildrenFunction<P, T> = P & {
 
 interface GridCollectionProps<T> {
   collection: T[];
-  variant: "categories" | "catalogue";
+  variant: 'categories' | 'catalogue';
 }
 
 export const GridCollection = <T,>({

@@ -1,10 +1,10 @@
-import React from "react";
-import cn from "classnames";
-import { IMenuItem } from "@/src/types";
-import s from "./MenuItem.module.scss";
+import React from 'react';
+import cn from 'classnames';
+import { IMenuItem } from '@/src/types';
+import s from './MenuItem.module.scss';
 
 interface MenuItemProps extends IMenuItem {
-  iconSize: "sm";
+  iconSize: 'sm';
 }
 
 export const MenuItem = ({

@@ -1,19 +1,19 @@
-import { useRouter } from "next/router";
-import cn from "classnames";
-import s from "./Pagination.module.scss";
-import usePagination from "./hooks/usePagination";
-import { Button } from "@/src/components/Button";
+import { useRouter } from 'next/router';
+import cn from 'classnames';
+import s from './Pagination.module.scss';
+import usePagination from './hooks/usePagination';
+import { Button } from '@/src/components/Button';
 
 type PaginationBtnProps = {
-  size: "sm";
-  color: "primary-black";
+  size: 'sm';
+  color: 'primary-black';
 };
 
 interface PaginationProps {
   total: number;
   category: string;
   buttons: PaginationBtnProps;
-  margin: "mt-20" | "mt-30" | "mb-20";
+  margin: 'mt-20' | 'mt-30' | 'mb-20';
 }
 
 export const Pagination = ({

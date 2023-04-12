@@ -1,4 +1,4 @@
-import s from "./DetailsText.module.scss";
+import s from './DetailsText.module.scss';
 
 interface DetailsTextProps {
   characteristic: string;
@@ -11,7 +11,7 @@ export const DetailsText = ({
 }: DetailsTextProps): JSX.Element => {
   const key = `${characteristic[0].toUpperCase()}${characteristic
     .slice(1)
-    .replace("_", " ")}`;
+    .replace('_', ' ')}`;
 
   return (
     <p className={s.text}>

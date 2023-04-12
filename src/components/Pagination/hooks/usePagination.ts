@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { initPaginationData } from "../utils/initPaginationData";
-import { PaginationItem } from "@/src/types";
+import { useState, useEffect } from 'react';
+import { initPaginationData } from '../utils/initPaginationData';
+import { PaginationItem } from '@/src/types';
 
 export default function usePagination(total: number, category: string) {
   const [pagination, setPagination] = useState<PaginationItem[]>([]);
@@ -8,7 +8,7 @@ export default function usePagination(total: number, category: string) {
   useEffect(() => {
     const paginationData = initPaginationData(total, category);
     setPagination(paginationData);
-  }, []);
+  }, [total, category]);
 
   return pagination;
 }

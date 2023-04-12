@@ -1,12 +1,12 @@
-import { useMemo } from "react";
-import Link from "next/link";
-import cn from "classnames";
-import s from "./Button.module.scss";
+import { useMemo } from 'react';
+import Link from 'next/link';
+import cn from 'classnames';
+import s from './Button.module.scss';
 
 interface ButtonProps {
   text: string | number;
-  color: "primary-black" | "primary-yellow";
-  size: "sm" | "md";
+  color: 'primary-black' | 'primary-yellow';
+  size: 'sm' | 'md';
   onClick: () => void;
   href?: string;
   active?: boolean;
@@ -31,7 +31,7 @@ export const Button = ({
 
   const btnContent = useMemo(
     () => <>{text && <span className={s.button__text}>{text}</span>}</>,
-    [text]
+    [text],
   );
 
   if (href) {

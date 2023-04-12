@@ -1,6 +1,6 @@
-import { Details } from "@/src/types";
-import s from "./CardDetails.module.scss";
-import { DetailsText } from "../DetailsText";
+import { Details } from '@/src/types';
+import s from './CardDetails.module.scss';
+import { DetailsText } from '../DetailsText';
 
 interface CardDetailsProps {
   name: string;
