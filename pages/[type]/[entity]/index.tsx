@@ -1,14 +1,12 @@
+import { useContext, useRef } from 'react';
 import { GetServerSideProps } from 'next';
 import s from '@/src/pages/CollectionCardPage/CollectionCardPage.module.scss';
+import { Entities, EntitiesTypes, Pages } from '@/src/types';
 import { MainLayout } from '@/src/layouts/MainLayout';
-import { useContext, useRef } from 'react';
 import { AppContext } from '@/src/context';
 import { fetchEntityData } from '@/src/rest/fetchEntityData';
-import { Button } from '@/src/components/Button';
-import DefaultPoster from '@/src/assets/images/home/default.jpeg';
-import Image from 'next/image';
-import { ImageComponent } from '@/src/components/ImageComponent';
-import { Entities, EntitiesTypes, Pages } from '@/src/types';
+import { BannerComponent } from '@/src/components/BannerComponent';
+import { AppHead } from '@/src/components/AppHead';
 
 interface CardPageProps {
   data: Entities;
@@ -22,41 +20,25 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
   const title = 'title' in data ? data.title : data.name;
   const infoRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
     infoRef.current &&
       infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
     <MainLayout>
-      <div className={s.banner}>
-        {src ? (
-          <img src={src} alt="" className={s.banner__cover} />
-        ) : (
-          <Image className={s.banner__cover} src={DefaultPoster} alt="" />
-        )}
-        <div className={s.banner__info}>
-          <div className={s.banner__text}>
-            <h1>{title}</h1>
-            <p>{`Star Wars ${category}`}</p>
-            <Button
-              color="primary-yellow"
-              size="md"
-              text="See more"
-              onClick={handleClick}
-            />
-          </div>
-          <div className={s.banner__image}>
-            <ImageComponent
-              image={`https://starwars-visualguide.com/assets/img/${
-                category === 'people' ? 'characters' : category
-              }/${id}.jpg`}
-              alt={title}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={s.container} ref={infoRef}>
+      <AppHead
+        title={`${title} – Star Wars ${category}`}
+        description={`Everything you need to know about ${title} in the Star Wars universe.`}
+      />
+      <BannerComponent
+        category={category}
+        id={id}
+        src={src}
+        title={title}
+        handleButtonClick={handleButtonClick}
+      />
+      {/* <div className={s.container} ref={infoRef}>
         <div className={s.container__content}>
           <h2>Character facts</h2>
           <ul className={s.container__list}>
@@ -87,7 +69,7 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </MainLayout>
   );
 };
