@@ -28,10 +28,10 @@ export const ImageComponent = ({
     }
 
     if (typeof image === 'string') {
-      return <img src={image} alt={alt} onError={setDefaultImage} />;
-    } else {
       return <Image src={image} alt={alt} onError={setDefaultImage} />;
     }
+
+    return <Image src={image} alt={alt} onError={setDefaultImage} />;
   }, [image, alt, error]);
 
   return <>{getImageChildren}</>;
