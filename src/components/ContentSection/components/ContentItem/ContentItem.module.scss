@@ -1,0 +1,31 @@
+.item {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  column-gap: 15px;
+
+  @media (min-width: 640px) {
+    width: 45%;
+  }
+
+  span {
+    &:nth-child(1) {
+      width: 45%;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--secondary-yellow);
+
+      @media (min-width: 768px) {
+        width: 150px;
+      }
+    }
+
+    &:nth-child(2) {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+  }
+}

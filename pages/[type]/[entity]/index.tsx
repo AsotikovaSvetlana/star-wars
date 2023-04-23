@@ -1,12 +1,12 @@
 import { useContext, useRef } from 'react';
 import { GetServerSideProps } from 'next';
-import s from '@/src/pages/CollectionCardPage/CollectionCardPage.module.scss';
 import { Entities, EntitiesTypes, Pages } from '@/src/types';
-import { MainLayout } from '@/src/layouts/MainLayout';
 import { AppContext } from '@/src/context';
 import { fetchEntityData } from '@/src/rest/fetchEntityData';
+import { MainLayout } from '@/src/layouts/MainLayout';
 import { BannerComponent } from '@/src/components/BannerComponent';
 import { AppHead } from '@/src/components/AppHead';
+import { ContentSection } from '@/src/components/ContentSection';
 
 interface CardPageProps {
   data: Entities;
@@ -18,11 +18,39 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
   const { poster } = useContext(AppContext);
   const src = typeof poster === 'string' ? poster : poster.src;
   const title = 'title' in data ? data.title : data.name;
-  const infoRef = useRef<HTMLDivElement>(null);
+  const factsRef = useRef<HTMLDivElement>(null);
+
+  const exeptions = [
+    'url',
+    'created',
+    'edited',
+    'films',
+    'homeworld',
+    'species',
+    'starships',
+    'vehicles',
+    'characters',
+    'planets',
+    'residents',
+    'pilots',
+    'people',
+  ];
+
+  const res = Object.entries(data)
+    .filter((el) => !exeptions.includes(el[0]) && el[1] !== 'n/a')
+    .map((item) => {
+      const prop = item[0].replaceAll('_', ' ');
+      const value = item[1];
+
+      return {
+        name: prop[0].toUpperCase() + prop.slice(1),
+        value,
+      };
+    });
 
   const handleButtonClick = () => {
-    infoRef.current &&
-      infoRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    factsRef.current &&
+      factsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -38,38 +66,11 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
         title={title}
         handleButtonClick={handleButtonClick}
       />
-      {/* <div className={s.container} ref={infoRef}>
-        <div className={s.container__content}>
-          <h2>Character facts</h2>
-          <ul className={s.container__list}>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-            <li>
-              <span>Powers:</span>{' '}
-              <span>
-                super strength, flight, invulnerability, superhuman agility,
-                super speed, living lightning
-              </span>
-            </li>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-            <li>
-              <span>First Appearance:</span> <span>WHIZ COMICS #2 (1940)</span>
-            </li>
-          </ul>
-        </div>
-      </div> */}
+      <ContentSection
+        sectionRef={factsRef}
+        title={`${category} facts`}
+        content={res}
+      />
     </MainLayout>
   );
 };
