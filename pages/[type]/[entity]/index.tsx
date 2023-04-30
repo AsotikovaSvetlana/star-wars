@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 import { GetServerSideProps } from 'next';
 import { Entities, EntitiesTypes, Pages } from '@/src/types';
 import { AppContext } from '@/src/context';
@@ -7,6 +7,7 @@ import { MainLayout } from '@/src/layouts/MainLayout';
 import { BannerComponent } from '@/src/components/BannerComponent';
 import { AppHead } from '@/src/components/AppHead';
 import { ContentSection } from '@/src/components/ContentSection';
+import { getContentTableData } from '@/src/utils';
 
 interface CardPageProps {
   data: Entities;
@@ -20,38 +21,10 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
   const title = 'title' in data ? data.title : data.name;
   const factsRef = useRef<HTMLDivElement>(null);
 
-  const exeptions = [
-    'url',
-    'created',
-    'edited',
-    'films',
-    'homeworld',
-    'species',
-    'starships',
-    'vehicles',
-    'characters',
-    'planets',
-    'residents',
-    'pilots',
-    'people',
-  ];
-
-  const res = Object.entries(data)
-    .filter((el) => !exeptions.includes(el[0]) && el[1] !== 'n/a')
-    .map((item) => {
-      const prop = item[0].replaceAll('_', ' ');
-      const value = item[1];
-
-      return {
-        name: prop[0].toUpperCase() + prop.slice(1),
-        value,
-      };
-    });
-
-  const handleButtonClick = () => {
+  const handleButtonClick = useCallback(() => {
     factsRef.current &&
       factsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  }, []);
 
   return (
     <MainLayout>
@@ -69,7 +42,7 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
       <ContentSection
         sectionRef={factsRef}
         title={`${category} facts`}
-        content={res}
+        content={getContentTableData(data)}
       />
     </MainLayout>
   );

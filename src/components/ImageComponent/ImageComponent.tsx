@@ -28,7 +28,19 @@ export const ImageComponent = ({
     }
 
     if (typeof image === 'string') {
-      return <Image src={image} alt={alt} onError={setDefaultImage} />;
+      return (
+        <Image
+          width={1000}
+          height={1000}
+          style={{
+            maxWidth: '100%',
+            height: '100%',
+          }}
+          src={image}
+          alt={alt}
+          onError={setDefaultImage}
+        />
+      );
     }
 
     return <Image src={image} alt={alt} onError={setDefaultImage} />;

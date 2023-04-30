@@ -1,9 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'starwars-visualguide.com',
+        port: '',
+        pathname: '/assets/**',
+      },
+    ],
+  },
   webpack(config) {
     config.module.rules.push({
-      loader: "@svgr/webpack",
+      loader: '@svgr/webpack',
       issuer: /\.[jt]sx?$/,
       options: {
         prettier: false,
@@ -11,7 +21,7 @@ const nextConfig = {
         svgoConfig: {
           plugins: [
             {
-              name: "preset-default",
+              name: 'preset-default',
               params: {
                 overrides: { removeViewBox: false },
               },

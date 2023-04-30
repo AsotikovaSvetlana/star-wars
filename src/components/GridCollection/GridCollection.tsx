@@ -15,10 +15,8 @@ export const GridCollection = <T,>({
   collection,
   variant,
   children,
-}: PropsWithChildrenFunction<GridCollectionProps<T>, T>): JSX.Element => {
-  return (
-    <div className={cn(s.grid, s[variant])}>
-      {children && collection && collection.map((item) => children(item))}
-    </div>
-  );
-};
+}: PropsWithChildrenFunction<GridCollectionProps<T>, T>): JSX.Element => (
+  <div className={cn(s.grid, s[variant])}>
+    {children && collection && collection.map((item) => children(item))}
+  </div>
+);
