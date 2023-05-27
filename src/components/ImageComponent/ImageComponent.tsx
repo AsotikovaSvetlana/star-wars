@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import s from './ImageComponent.module.scss';
 import DefaultImage from '@/src/assets/icons/default.svg';
@@ -45,6 +45,10 @@ export const ImageComponent = ({
 
     return <Image src={image} alt={alt} onError={setDefaultImage} />;
   }, [image, alt, error]);
+
+  useEffect(() => {
+    setError(false);
+  }, [image]);
 
   return <>{getImageChildren}</>;
 };

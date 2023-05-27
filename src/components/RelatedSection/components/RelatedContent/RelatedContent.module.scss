@@ -1,0 +1,29 @@
+.content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+  grid-template-rows: auto;
+  justify-items: stretch;
+  grid-gap: 20px;
+  list-style: none;
+}
+
+.extended {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.wrapper {
+  margin-top: 30px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary-yellow);
+  }
+}

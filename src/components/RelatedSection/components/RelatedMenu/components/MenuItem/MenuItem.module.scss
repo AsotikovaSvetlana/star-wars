@@ -1,0 +1,22 @@
+.item {
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  background-color: var(--primary-yellow);
+  color: var(--secondary-black);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover:not(.active) {
+    opacity: 0.8;
+  }
+
+  &.active {
+    border: 1px solid var(--primary-yellow);
+    background-color: transparent;
+    color: var(--primary-yellow);
+  }
+}

@@ -3,9 +3,9 @@ import { ContentList } from './components/ContentList';
 import { ContentItemType } from './types';
 
 interface ContentSectionProps {
-  sectionRef: React.RefObject<HTMLDivElement>;
   title: string;
   content: ContentItemType[];
+  sectionRef?: React.RefObject<HTMLDivElement>;
 }
 
 const ContentSection = ({

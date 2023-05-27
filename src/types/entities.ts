@@ -155,3 +155,27 @@ export interface IVehicle {
   image: StaticImageData | string;
   href: string;
 }
+
+export const isIFilm = (obj: Entities): obj is IFilm => {
+  return obj.url.includes('films');
+};
+
+export const isCharacter = (obj: Entities): obj is ICharacter => {
+  return obj.url.includes('people');
+};
+
+export const isPlanet = (obj: Entities): obj is IPlanet => {
+  return obj.url.includes('planets');
+};
+
+export const isSpecies = (obj: Entities): obj is ISpecies => {
+  return obj.url.includes('species');
+};
+
+export const isStarship = (obj: Entities): obj is IStarship => {
+  return obj.url.includes('starships');
+};
+
+export const isVehicle = (obj: Entities): obj is IVehicle => {
+  return obj.url.includes('vehicles');
+};

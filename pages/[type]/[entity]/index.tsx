@@ -8,6 +8,7 @@ import { BannerComponent } from '@/src/components/BannerComponent';
 import { AppHead } from '@/src/components/AppHead';
 import { ContentSection } from '@/src/components/ContentSection';
 import { getContentTableData } from '@/src/utils';
+import { RelatedSection } from '@/src/components/RelatedSection';
 
 interface CardPageProps {
   data: Entities;
@@ -44,6 +45,7 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
         title={`${category} facts`}
         content={getContentTableData(data)}
       />
+      <RelatedSection data={data} category={category} />
     </MainLayout>
   );
 };

@@ -3,3 +3,4 @@ export * from './collection';
 export * from './entities';
 export * from './details';
 export * from './pagination';
+export * from './related';

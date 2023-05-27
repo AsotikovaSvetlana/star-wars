@@ -21,4 +21,8 @@ export const StarWarsAPI = {
     );
     return data;
   },
+  async getRelatedData<T>(url: string): Promise<IEntityDetailsResponse<T>> {
+    const { data } = await axios.get<IEntityDetailsResponse<T>>(url);
+    return data;
+  },
 };
