@@ -1,10 +1,106 @@
 .pagination {
+  padding: 0 20px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
-  column-gap: 12px;
+
+  :global {
+    .ant-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 15px;
+    }
+
+    .ant-pagination-item {
+      margin-right: 12px;
+      padding: 8px 16px;
+      min-width: 40px;
+      height: 40px;
+      background-color: var(--primary-black);
+      box-shadow: var(--secondary-shade);
+      transition: 0.2s ease;
+
+      a {
+        padding: 0;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        color: var(--primary-yellow);
+      }
+
+      &:hover:not(.ant-pagination-item-active) {
+        opacity: 0.8;
+        background-color: var(--primary-black);
+      }
+
+      &.ant-pagination-item-active {
+        box-shadow: 0px 0px 5px var(--secondary-yellow);
+        color: var(--primary-yellow);
+        border: none;
+        opacity: 0.7;
+        pointer-events: none;
+      }
+    }
+
+    .ant-pagination-next {
+      margin-left: 3px;
+    }
+
+    .ant-pagination-prev {
+      margin-right: 15px;
+    }
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      padding: 8px 16px;
+      min-width: 40px;
+      height: 40px;
+      border: 1px solid var(--primary-yellow);
+      cursor: pointer;
+
+      .ant-pagination-item-link {
+        color: var(--primary-yellow);
+      }
+
+      &:hover:not(.ant-pagination-disabled) {
+        border: 1px solid var(--secondary-yellow);
+
+        .ant-pagination-item-link {
+          color: var(--secondary-yellow);
+        }
+      }
+
+      &.ant-pagination-disabled {
+        opacity: 0.6;
+        cursor: auto;
+
+        &:hover {
+          .ant-pagination-item-link {
+            color: var(--primary-yellow);
+            cursor: auto;
+          }
+        }
+      }
+    }
+
+    .ant-pagination-jump-next,
+    .ant-pagination-jump-prev {
+      min-width: 40px;
+      margin-right: 12px;
+      cursor: pointer;
+
+      .ant-pagination-item-link {
+        color: var(--primary-yellow);
+
+        .ant-pagination-item-ellipsis,
+        .ant-pagination-item-link-icon {
+          color: var(--primary-yellow);
+        }
+      }
+    }
+  }
 }
 
 /* Margins */

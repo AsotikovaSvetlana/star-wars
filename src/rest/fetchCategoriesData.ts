@@ -7,9 +7,9 @@ export const fetchCategoriesData = async <T extends object>(
 ) => {
   try {
     const response = await StarWarsAPI.getEntitiesData<T>(category, pageNumber);
-    const totalPages = Math.ceil(+response.count / 10);
-    const peopleCollection = convertFetchData<T>(response.results, category);
-    return { totalPages, collection: peopleCollection };
+    const totalPages = +response.count;
+    const collection = convertFetchData<T>(response.results, category);
+    return { totalPages, collection };
   } catch (err) {
     return null;
   }

@@ -17,7 +17,7 @@ import {
 import { GridCollection } from '@/src/components/GridCollection';
 import { CollectionCard } from '@/src/components/CollectionCard';
 import { fetchCategoriesData } from '@/src/rest/fetchCategoriesData';
-import { Pagination } from '@/src/components/Pagination';
+import { PaginationComponent } from '@/src/components/Pagination';
 
 interface CollectionPageProps {
   category: keyof EntitiesTypes;
@@ -88,11 +88,10 @@ const CollectionPage = ({
           />
         )}
       </GridCollection>
-      <Pagination
+      <PaginationComponent
         total={totalPages}
         category={category}
         margin="mt-30"
-        buttons={{ color: 'primary-black', size: 'sm' }}
       />
     </MainLayout>
   );
