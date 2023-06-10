@@ -7,7 +7,7 @@ import { MainLayout } from '@/src/layouts/MainLayout';
 import { BannerComponent } from '@/src/components/BannerComponent';
 import { AppHead } from '@/src/components/AppHead';
 import { ContentSection } from '@/src/components/ContentSection';
-import { getContentTableData } from '@/src/utils';
+import { getContentTableData } from '@/src/utils/getContentTableData';
 import { RelatedSection } from '@/src/components/RelatedSection';
 
 interface CardPageProps {
