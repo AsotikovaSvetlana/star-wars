@@ -5,7 +5,7 @@ import { ContentItemType } from './types';
 interface ContentSectionProps {
   title: string;
   content: ContentItemType[];
-  sectionRef?: React.RefObject<HTMLDivElement>;
+  sectionRef: React.RefObject<HTMLDivElement>;
 }
 
 const ContentSection = ({
@@ -16,7 +16,7 @@ const ContentSection = ({
   <div className={s.section} ref={sectionRef}>
     <div className={s.section__content}>
       <h2>{title}</h2>
-      <ContentList content={content} />
+      <ContentList content={content} sectionRef={sectionRef} />
     </div>
   </div>
 );
