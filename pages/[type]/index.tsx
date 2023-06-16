@@ -85,6 +85,7 @@ const CollectionPage = ({
             href={item.href}
             image={item.image}
             details={getCardDetails(item)}
+            category={category}
           />
         )}
       </GridCollection>

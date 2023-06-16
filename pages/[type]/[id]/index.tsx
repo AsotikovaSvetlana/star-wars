@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef } from 'react';
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { Entities, EntitiesTypes, Pages } from '@/src/types';
 import { AppContext } from '@/src/context';
 import { fetchEntityData } from '@/src/rest/fetchEntityData';
@@ -9,6 +9,7 @@ import { AppHead } from '@/src/components/AppHead';
 import { ContentSection } from '@/src/components/ContentSection';
 import { getContentTableData } from '@/src/utils/getContentTableData';
 import { RelatedSection } from '@/src/components/RelatedSection';
+import { StarWarsAPI } from '@/src/api/StarWarsAPI';
 
 interface CardPageProps {
   data: Entities;
@@ -50,17 +51,67 @@ const CardPage = ({ data, category, id }: CardPageProps): JSX.Element => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<CardPageProps> = async ({
+export const getStaticPaths: GetStaticPaths = async () => {
+  const promises = [
+    'films',
+    'people',
+    'planets',
+    'species',
+    'starships',
+    'vehicles',
+  ].map((item) => StarWarsAPI.getEntitiesData<Entities>(item));
+
+  type PathType = {
+    params: {
+      type: string;
+      id: string;
+    };
+  };
+  const paths: PathType[] = [];
+
+  await Promise.all(promises).then((results) => {
+    results.forEach((item) => {
+      const data = Array.from({ length: item.count }, (_, index) => index + 1);
+
+      const type = [
+        'films',
+        'people',
+        'planets',
+        'species',
+        'starships',
+        'vehicles',
+      ].find((el) => item.results[0].url.includes(el));
+
+      if (type) {
+        data.forEach((item) =>
+          paths.push({
+            params: {
+              type,
+              id: item.toString(),
+            },
+          }),
+        );
+      }
+    });
+  });
+  console.log(paths);
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<CardPageProps> = async ({
   params,
 }) => {
-  if (!params || !params.type || !params.entity) {
+  if (!params || !params.type || !params.id) {
     return {
       notFound: true,
     };
   }
 
-  const id =
-    typeof params.entity === 'string' ? +params.entity : +params.entity[0];
+  const id = typeof params.id === 'string' ? +params.id : +params.id[0];
   const category = (
     typeof params.type === 'string' ? params.type : params.type[0]
   ) as Pages;

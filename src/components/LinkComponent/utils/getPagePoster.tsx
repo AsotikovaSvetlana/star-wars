@@ -14,6 +14,7 @@ export const getPagePoster = (
   switch (type) {
     case 'characters':
     case 'residents':
+    case 'people':
     case 'pilots':
       return CharactersPoster;
     case 'planets':
