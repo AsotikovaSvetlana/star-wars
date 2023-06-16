@@ -52,12 +52,12 @@ const ContentItem = ({
     }
 
     return <span>{value}</span>;
-  }, [name, value, isExpand, description]);
+  }, [name, value, isExpand, expand, description, handleValueClick]);
 
   useEffect(() => {
     const visibleValue = value.length > 100 ? value.slice(0, 100) : value;
     setDescription(visibleValue);
-  }, []);
+  }, [value]);
 
   return (
     <li className={s.item}>

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Pages } from '../../../types';
 import {
   charactersRelated,
   filmsRelated,
@@ -8,7 +7,7 @@ import {
   starshipsRelated,
   vehiclesRelated,
 } from '../../../data/relatedMenu';
-import { RelatedMenuItem } from '../../../types';
+import { RelatedMenuItem, Pages } from '../../../types';
 
 export default function useRelatedMenu(page: Pages) {
   const [menu, setMenu] = useState<RelatedMenuItem[]>([]);

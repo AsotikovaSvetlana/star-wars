@@ -1,8 +1,7 @@
-import { useCallback, useState } from 'react';
 import s from './RelatedSection.module.scss';
 import { Entities, Pages } from '@/src/types';
 import useRelatedData from '@/src/components/RelatedSection/hooks/useRelatedData';
-import { RelatedMenu } from './components/RelatedMenu/RelatedMenu';
+import RelatedMenu from './components/RelatedMenu/RelatedMenu';
 import { RelatedContent } from './components/RelatedContent';
 import useRelatedMenu from './hooks/useRelatedMenu';
 

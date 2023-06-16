@@ -7,25 +7,24 @@ import {
   isSpecies,
   isStarship,
   isVehicle,
+  RelatedLinks,
+  RelatedData,
+  isIFilm,
 } from '../../../types';
-import { RelatedLinks, RelatedData, isIFilm } from '../../../types';
 import { StarWarsAPI } from '../../../api/StarWarsAPI';
 
 export default function useRelatedData(data: Entities, page: Pages) {
   const [cards, setCards] = useState<RelatedData | null>(null);
   const [loader, setLoader] = useState(false);
 
-  const getAllRelated = async (
-    data: string[] | undefined,
-    category: string,
-  ) => {
-    if (!data) return;
+  const getAllRelated = async (arr: string[] | undefined, category: string) => {
+    if (!arr) return;
 
     const fetchRelated = (): Promise<PromiseSettledResult<Entities>[]> => {
       const promises = [];
 
-      for (let i = 0; i < data.length; i++) {
-        promises.push(StarWarsAPI.getRelatedData<Entities>(data[i]));
+      for (let i = 0; i < arr.length; i++) {
+        promises.push(StarWarsAPI.getRelatedData<Entities>(arr[i]));
       }
       return Promise.allSettled(promises);
     };
@@ -42,7 +41,7 @@ export default function useRelatedData(data: Entities, page: Pages) {
         setCards((prevState) => ({ ...prevState, [category]: res }));
       })
       .catch((err) => {
-        console.log(err.message);
+        console.error(err.message);
       })
       .finally(() => {
         setLoader(false);
@@ -119,7 +118,7 @@ export default function useRelatedData(data: Entities, page: Pages) {
         break;
     }
 
-    for (let key in links) {
+    for (const key in links) {
       getAllRelated(links[key as keyof RelatedLinks], key);
     }
   }, [data]);

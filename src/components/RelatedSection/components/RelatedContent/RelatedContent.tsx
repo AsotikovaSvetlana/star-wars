@@ -26,11 +26,10 @@ const RelatedContent = ({
     }
 
     const arrLength = data[category]?.length;
+    const isExtended = arrLength && arrLength > 3;
 
     return (
-      <ul
-        className={cn(s.content, { [s.extended]: arrLength ? arrLength > 3 : ""})}
-      >
+      <ul className={cn(s.content, { [s.extended]: isExtended })}>
         {data[category]?.map((item) => {
           const name = isIFilm(item) ? item.title : item.name;
           return (

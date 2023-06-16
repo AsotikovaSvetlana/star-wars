@@ -83,18 +83,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
       ].find((el) => item.results[0].url.includes(el));
 
       if (type) {
-        data.forEach((item) =>
+        data.forEach((el) =>
           paths.push({
             params: {
               type,
-              id: item.toString(),
+              id: el.toString(),
             },
           }),
         );
       }
     });
   });
-  console.log(paths);
 
   return {
     paths,

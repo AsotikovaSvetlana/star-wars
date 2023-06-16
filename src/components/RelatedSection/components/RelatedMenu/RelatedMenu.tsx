@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './RelatedMenu.module.scss';
 import { RelatedMenuItem } from '@/src/types';
-import { MenuItem } from './components/MenuItem';
+import MenuItem from './components/MenuItem';
 
 interface RelatedMenuProps {
   menu: RelatedMenuItem[];
@@ -9,22 +9,24 @@ interface RelatedMenuProps {
   onClick: (id: number) => void;
 }
 
-const RelatedMenu = React.memo(
-  ({ menu, activeItem, onClick }: RelatedMenuProps): JSX.Element => {
-    return (
-      <ul className={s.menu}>
-        {menu.map(({ id, name }, index) => (
-          <MenuItem
-            key={id}
-            index={index}
-            name={name}
-            isActive={activeItem === index}
-            onClick={onClick}
-          />
-        ))}
-      </ul>
-    );
-  },
-);
+const RelatedMenu = ({
+  menu,
+  activeItem,
+  onClick,
+}: RelatedMenuProps): JSX.Element => {
+  return (
+    <ul className={s.menu}>
+      {menu.map(({ id, name }, index) => (
+        <MenuItem
+          key={id}
+          index={index}
+          name={name}
+          isActive={activeItem === index}
+          onClick={onClick}
+        />
+      ))}
+    </ul>
+  );
+};
 
-export { RelatedMenu };
+export default React.memo(RelatedMenu);
