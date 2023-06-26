@@ -1,6 +1,6 @@
 # :rocket: Star Wars App
 
-<h3 align="center"><a href="#" target="_blank">Demo</a></h3>
+<h3 align="center"><a href="https://star-wars-asotikovasvetlana.vercel.app/" target="_blank">Demo</a></h3>
 
 ---
 
