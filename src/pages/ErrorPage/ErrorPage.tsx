@@ -1,6 +1,6 @@
 import s from './ErrorPage.module.scss';
 import Yoda from '@/src/assets/images/error/yoda.svg';
-import { MainLayout } from '@/src/layouts/MainLayout';
+import MainLayout from '@/src/layouts/MainLayout';
 import { Flex } from '@/src/components/Flex';
 import { LinkComponent } from '@/src/components/LinkComponent';
 

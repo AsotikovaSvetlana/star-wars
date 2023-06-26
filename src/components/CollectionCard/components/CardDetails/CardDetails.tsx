@@ -10,14 +10,12 @@ interface CardDetailsProps {
 export const CardDetails = ({
   name,
   details,
-}: CardDetailsProps): JSX.Element => {
-  return (
-    <div className={s.details}>
-      <DetailsText characteristic="Name" value={name} />
-      {details &&
-        Object.entries(details).map(([key, value]) => (
-          <DetailsText key={key} characteristic={key} value={value} />
-        ))}
-    </div>
-  );
-};
+}: CardDetailsProps): JSX.Element => (
+  <div className={s.details}>
+    <DetailsText characteristic="Name" value={name} />
+    {details &&
+      Object.entries(details).map(([key, value]) => (
+        <DetailsText key={key} characteristic={key} value={value} />
+      ))}
+  </div>
+);

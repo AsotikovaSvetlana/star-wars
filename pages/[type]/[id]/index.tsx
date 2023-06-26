@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { Entities, EntitiesTypes, Pages } from '@/src/types';
 import { AppContext } from '@/src/context';
 import { fetchEntityData } from '@/src/rest/fetchEntityData';
-import { MainLayout } from '@/src/layouts/MainLayout';
+import MainLayout from '@/src/layouts/MainLayout';
 import { BannerComponent } from '@/src/components/BannerComponent';
 import { AppHead } from '@/src/components/AppHead';
 import { ContentSection } from '@/src/components/ContentSection';

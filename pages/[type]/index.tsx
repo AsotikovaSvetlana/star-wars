@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { useMemo } from 'react';
 import { format } from 'date-fns';
-import { MainLayout } from '@/src/layouts/MainLayout';
+import MainLayout from '@/src/layouts/MainLayout';
 import { AppHead } from '@/src/components/AppHead';
 import {
   Details,
